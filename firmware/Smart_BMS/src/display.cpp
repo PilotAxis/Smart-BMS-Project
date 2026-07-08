@@ -1,36 +1,9 @@
-#include "display.h"
-#include "protection.h"
+#include <Arduino.h>
 
-void displayStatus()
-{
-    switch(batteryStatus)
-    {
-        case NORMAL:
-
-            Serial.println("Status : NORMAL");
-            break;
-
-        case OVER_VOLTAGE:
-
-            Serial.println("Status : OVER VOLTAGE");
-            break;
-
-        case UNDER_VOLTAGE:
-
-            Serial.println("Status : UNDER VOLTAGE");
-            break;
-
-        case OVER_CURRENT:
-
-            Serial.println("Status : OVER CURRENT");
-            break;
-
-        case OVER_TEMPERATURE:
-
-            Serial.println("Status : OVER TEMPERATURE");
-            break;
-    }
-}
+#include "/Users/ahmedmajid/Downloads/Smart BMS Project/firmware/Smart_BMS/include/display.h"
+#include "/Users/ahmedmajid/Downloads/Smart BMS Project/firmware/Smart_BMS/include/sensors.h"
+#include "/Users/ahmedmajid/Downloads/Smart BMS Project/firmware/Smart_BMS/include/soc.h"
+#include "/Users/ahmedmajid/Downloads/Smart BMS Project/firmware/Smart_BMS/include/protection.h"
 
 void displayBatteryData()
 {
@@ -51,9 +24,58 @@ void displayBatteryData()
     Serial.print("SOC         : ");
     Serial.print(batterySOC);
     Serial.println(" %");
+}
 
+void displayStatus()
+{
     Serial.print("Status      : ");
-    Serial.println(batteryStatus);
+
+    if (batteryStatus == NORMAL)
+    {
+        Serial.println("NORMAL");
+    }
+    else
+    {
+        bool first = true;
+
+        if (batteryStatus & OVER_VOLTAGE)
+        {
+            Serial.print("OVER VOLTAGE");
+            first = false;
+        }
+
+        if (batteryStatus & UNDER_VOLTAGE)
+        {
+            if (!first)
+            {
+                Serial.print(", ");
+            }
+            Serial.print("UNDER VOLTAGE");
+            first = false;
+        }
+
+        if (batteryStatus & OVER_CURRENT)
+        {
+            if (!first)
+            {
+                Serial.print(", ");
+            }
+            Serial.print("OVER CURRENT");
+            first = false;
+        }
+
+        if (batteryStatus & OVER_TEMPERATURE)
+        {
+            if (!first)
+            {
+                Serial.print(", ");
+            }
+            Serial.print("OVER TEMPERATURE");
+        }
+
+        Serial.println();
+    }
 
     Serial.println("==============================");
+    Serial.println();
 }

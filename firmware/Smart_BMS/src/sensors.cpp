@@ -1,24 +1,25 @@
-#include "sensors.h"
+#include "/Users/ahmedmajid/Downloads/Smart BMS Project/firmware/Smart_BMS/include/sensors.h"
+#include <Arduino.h>
 
-float batteryVoltage = 0;
+float batteryVoltage = 0.0;
 
-float batteryCurrent = 0;
+float batteryCurrent = 0.0;
 
-float batteryTemperature = 0;
+float batteryTemperature = 0.0;
 
 float readBatteryVoltage()
 {
-    return 3.95;
+    return 4.05;
 }
 
 float readBatteryCurrent()
 {
-    return 1.20;
+    return 7.20;
 }
 
 float readBatteryTemperature()
 {
-    return 28.5;
+    return 48.5;
 }
 
 void readSensors()

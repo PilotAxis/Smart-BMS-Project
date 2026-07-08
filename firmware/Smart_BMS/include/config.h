@@ -1,6 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// Battery Protection Parameters
+
 const float MAX_VOLTAGE = 4.20;
 const float MIN_VOLTAGE = 3.00;
 

@@ -1,4 +1,4 @@
-#include "soc.h"
+#include "/Users/ahmedmajid/Downloads/Smart BMS Project/firmware/Smart_BMS/include/soc.h"
 
 float batterySOC = 0;
 

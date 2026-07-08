@@ -1,27 +1,18 @@
 #ifndef PROTECTION_H
 #define PROTECTION_H
 
-const float MAX_VOLTAGE = 4.20;
-const float MIN_VOLTAGE = 3.00;
+#include <Arduino.h>
 
-const float MAX_CURRENT = 5.0;
-
-const float MAX_TEMP = 60.0;
-
-enum BatteryStatus
+enum batteryStatus : uint8_t
 {
-    NORMAL,
-
-    OVER_VOLTAGE,
-
-    UNDER_VOLTAGE,
-
-    OVER_CURRENT,
-
-    OVER_TEMPERATURE
+    NORMAL = 0x00,
+    OVER_VOLTAGE = 0x01,
+    UNDER_VOLTAGE = 0x02,
+    OVER_CURRENT = 0x04,
+    OVER_TEMPERATURE = 0x08
 };
 
-extern BatteryStatus batteryStatus;
+extern uint8_t batteryStatus;
 
 void checkProtection();
 
